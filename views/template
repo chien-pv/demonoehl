@@ -1,0 +1,6 @@
+<%- include('layouts/header') %>
+<main>
+  <h1>Express</h1>
+  <p>Welcome to Express </p>
+</main>
+<%- include('layouts/footer') %>
