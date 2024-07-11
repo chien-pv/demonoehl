@@ -58,6 +58,14 @@
                         <button class="btn btn-outline-success"
                             type="submit">Search</button>
                     </form>
+                    <% if(uname) { %>
+                    <span class="text-white"> <%= uname %> </span>
+                    <% } else { %>
+                    <a href="/login" class="btn btn-outline-info"
+                        type="button">Đăng Nhập</a>
+                    <button class="btn btn-outline-warning"
+                        type="button">Đăng Kí</button>
+                    <% } %>
                 </div>
             </div>
         </nav>
