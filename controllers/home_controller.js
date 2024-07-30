@@ -5,6 +5,8 @@ class HomeController {
   static async index(req, res, next) {
     let dateNow = new Date();
     let uname;
+    uname = req.session.user;
+    console.log(req.session);
     const jane = await Product.destroy({
       where: {
         id: 1,

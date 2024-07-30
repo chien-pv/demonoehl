@@ -9,8 +9,17 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var apiProductRouter = require("./routes/api/products");
+var cors = require("cors");
+var session = require("express-session");
+
+var sess = {
+  secret: "keyboard cat",
+  cookie: {},
+};
 
 var app = express();
+app.use(cors());
+app.use(session(sess));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
