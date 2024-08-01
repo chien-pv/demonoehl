@@ -9,8 +9,10 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var apiProductRouter = require("./routes/api/products");
+var apiAuthenRoutes = require("./routes/api/authen");
 var cors = require("cors");
 var session = require("express-session");
+var jwt = require("jsonwebtoken");
 
 var sess = {
   secret: "keyboard cat",
@@ -44,10 +46,22 @@ app.use(
   "/styles/js",
   express.static(path.join(__dirname, "./node_modules/bootstrap/dist/js"))
 );
+///tách ra 1 file riêng
+function checkLogin(req, res, next) {
+  let token = req.headers.authorization;
+  try {
+    var decoded = jwt.verify(token, "Hello");
+    console.log(decoded); // bar
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Bạn không có quyền truy cập" });
+  }
+}
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/api/products", apiProductRouter);
+app.use("/api/products", checkLogin, apiProductRouter);
+app.use("/api", apiAuthenRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
