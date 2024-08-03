@@ -13,6 +13,11 @@ var apiAuthenRoutes = require("./routes/api/authen");
 var cors = require("cors");
 var session = require("express-session");
 var jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/demonode23")
+  .then(() => console.log("Connected!"));
 
 var sess = {
   secret: "keyboard cat",

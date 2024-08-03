@@ -1,9 +1,13 @@
 const Product = require("../models/product");
 const { Op } = require("sequelize");
+const UserModel = require("../models/mongo/user");
 
 class HomeController {
   static async index(req, res, next) {
     let dateNow = new Date();
+
+    let mongo = await UserModel.find({});
+    console.log(mongo);
     let uname;
     uname = req.session.user;
     console.log(req.session);
